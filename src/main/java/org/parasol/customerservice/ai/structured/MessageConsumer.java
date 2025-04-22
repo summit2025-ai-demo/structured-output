@@ -44,7 +44,7 @@ public class MessageConsumer {
                     json.put("structured", siJson);
                     return json;
                 })
-                .onItem().invoke(j -> structuredMessageEmitter.emit(j.encode()))
+                .onItem().invoke(j -> structuredMessageEmitter.emit(message.key(), j.encode()))
                 .onItem().transformToUni(m -> Uni.createFrom().voidItem())
                 .onFailure().recoverWithItem(t -> {
                     LOGGER.error("Error while processing Message", t);
@@ -57,7 +57,7 @@ public class MessageConsumer {
                     error.put("stack_trace", sw.toString());
                     if (t instanceof DecodeException) {
                         error.put("message", message.value());
-                        errorEventEmitter.emit(error.encode());
+                        errorEventEmitter.emit(message.key(), error.encode());
                     } else {
                         JsonObject json = new JsonObject(message.value());
                         JsonArray errors = json.getJsonArray("errors");
@@ -66,7 +66,7 @@ public class MessageConsumer {
                         }
                         errors.add(error);
                         json.put("errors", errors);
-                        errorEventEmitter.emit(json.encode());
+                        errorEventEmitter.emit(message.key(), json.encode());
                     }
                     return null;
                 });
