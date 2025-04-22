@@ -12,7 +12,7 @@ public class StructuredInformation {
     String sentiment;
 
     @JsonProperty(required = false)
-    String companyId;
+    String customerId;
 
     @JsonProperty(required = false)
     String companyName;
@@ -42,8 +42,8 @@ public class StructuredInformation {
         return sentiment;
     }
 
-    public String getCompanyId() {
-        return companyId;
+    public String getCustomerId() {
+        return customerId;
     }
 
     public String getCompanyName() {
@@ -78,7 +78,7 @@ public class StructuredInformation {
         JsonObject jsonObject = new JsonObject();
         jsonObject.put("reason", reason == null || reason.isEmpty() ? null : reason);
         jsonObject.put("sentiment", sentiment == null || sentiment.isEmpty() ? null : sentiment);
-        jsonObject.put("company_id", companyId == null || companyId.isEmpty() ? null : companyId);
+        jsonObject.put("customer_id", customerId == null || customerId.isEmpty() ? null : customerId);
         jsonObject.put("company_name", companyName == null || companyName.isEmpty() ? null : companyName);
         jsonObject.put("customer_name", customerName == null || customerName.isEmpty() ? null : customerName);
         jsonObject.put("country", country == null || country.isEmpty() ? null : country);
