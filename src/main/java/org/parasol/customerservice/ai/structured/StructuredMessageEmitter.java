@@ -11,7 +11,7 @@ import org.eclipse.microprofile.reactive.messaging.Message;
 public class StructuredMessageEmitter {
 
     @Inject
-    @Channel("structured-message")
+    @Channel("structured-output")
     Emitter<String> emitter;
 
     public void emit(String key, String payload) {

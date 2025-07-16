@@ -52,7 +52,7 @@ public class MessageConsumer {
                     PrintWriter pw = new PrintWriter(sw);
                     t.printStackTrace(pw);
                     JsonObject error = new JsonObject();
-                    error.put("source", "structure-message");
+                    error.put("source", "structured-output");
                     error.put("error", t.getMessage());
                     error.put("stack_trace", sw.toString());
                     if (t instanceof DecodeException) {
